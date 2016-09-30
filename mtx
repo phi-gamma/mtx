@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+declare -r subcmd="${1:-}"
+declare -r mtxrun_bin="$(which mtxrun 2>/dev/null)"
+shift
+declare -ra argv=( $@ )
+
+set -ue
+
+bail ()
+{
+  printf "FATAL: %s\n" "$*" 1>&2
+  exit -1
+}
+
+precond ()
+{
+  if [ -z "${mtxrun_bin:-}" ]; then
+    bail "failed to locate mtxrun launcher"
+  fi
+  if [ -z "${subcmd:-}" ]; then
+    bail "no script specified"
+  fi
+}
+
+main ()
+{
+  "${mtxrun_bin}" --script "${subcmd}" "$@"
+}
+
+precond
+main $@
+
+# vim:ft=sh:ts=8:et:sw=2
+
