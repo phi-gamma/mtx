@@ -1,0 +1,16 @@
+mtx: invoke mtxrun scripts in ``command subcommand`` syntax
+
+usage: $ mtx SCRIPTNAME [ ARG1, ARG2, ... ]
+
+examples:
+
+    mtx                                 mtxrun
+    $ mtx fonts --statistics            $ mtxrun --script fonts --statistics
+    $ mtx plain --make                  $ mtxrun --script plain --make
+    $ mtx context somefile.tex          $ mtxrun --script context somefile.tex
+                                    or: $ context somefile.tex
+    $ mtx context --once somefile.tex   $ mtxrun --script context --once somefile.tex
+    $ mtx cache --list                  $ mtxrun --script cache --list
+    $ mtx grep mtx mtx                  $ mtxrun --script grep mtx mtx
+
+
